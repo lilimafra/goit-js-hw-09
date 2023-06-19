@@ -22,10 +22,16 @@ function handleFormSubmit(event) {
   for (let i = 0; i < amount; i++) {
     createPromise(position, delay)
       .then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        // Mostrar notificación de promesa cumplida usando Notiflix
+        Notiflix.Notify.Success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
       })
       .catch(({ position, delay }) => {
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        // Mostrar notificación de promesa rechazada usando Notiflix
+        Notiflix.Notify.Failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
       });
 
     delay += step;

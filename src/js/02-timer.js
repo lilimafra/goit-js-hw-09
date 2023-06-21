@@ -9,6 +9,7 @@ const minutesElement = document.querySelector('[data-minutes]');
 const secondsElement = document.querySelector('[data-seconds]');
 
 let countdownInterval;
+let finalDate = null;
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
@@ -63,6 +64,7 @@ flatpickr('#datetime-picker', {
 
     if (selectedDate && selectedDate > new Date()) {
       startButton.removeAttribute('disabled');
+      finalDate = selectedDate;
     } else {
       startButton.setAttribute('disabled', true);
     }
@@ -70,9 +72,8 @@ flatpickr('#datetime-picker', {
 });
 
 startButton.addEventListener('click', () => {
-  const selectedDate = flatpickr.parseDate(datetimePicker.value);
-
-  if (selectedDate) {
-    startCountdown(selectedDate.getTime());
+  console.log(finalDate);
+  if (finalDate) {
+    startCountdown(finalDate.getTime());
   }
 });
